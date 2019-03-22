@@ -1,7 +1,4 @@
-
-
 package me.example.filetransfer.util;
-
 
 public class FileType {
     public static final String FileTypes[][] = {

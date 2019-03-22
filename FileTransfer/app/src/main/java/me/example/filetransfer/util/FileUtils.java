@@ -1,4 +1,3 @@
-
 package me.example.filetransfer.util;
 
 import android.app.AlertDialog;
@@ -19,9 +18,6 @@ import java.util.Arrays;
 
 import me.example.filetransfer.R;
 
-/**
- * @author CPPAlien
- */
 public class FileUtils {
     /**
      * 获得文件的 uri

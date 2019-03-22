@@ -2,5 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"></LinearLayout>
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:text="Please check your WIFI connection"
+        android:textColor="@color/google_red"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+</LinearLayout>
