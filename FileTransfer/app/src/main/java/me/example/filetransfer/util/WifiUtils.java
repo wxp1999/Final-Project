@@ -8,6 +8,9 @@ import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
 
 public class WifiUtils {
+    /*
+    Get IP
+     */
     public static String getWifiIp(@NonNull Context context) {
         WifiManager wifimanager = (WifiManager) context.getApplicationContext().getSystemService
                 (Context.WIFI_SERVICE);
@@ -26,6 +29,9 @@ public class WifiUtils {
                 & 0xFF);
     }
 
+    /*
+    Get WiFi Connection Status
+     */
     public static NetworkInfo.State getWifiConnectState(Context context) {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context
                 .CONNECTIVITY_SERVICE);

@@ -32,7 +32,7 @@ $(function() {
 		fileInfoContainer.find('.trash').removeClass('trash').unbind();
 		fileInfoContainer.find('.download').removeClass('download').unbind();
 		$.post(deleteUrl, { '_method' : 'delete' }, function() {
-			setTimeout(function() { 
+			setTimeout(function() {
 				fileInfoContainer.slideUp('fast', function() {
 					fileInfoContainer.remove();
 				});
@@ -389,7 +389,7 @@ $(function() {
         
 		dragUpload();
 	}
-	
+
 	function showHtml4View() {
         $('#upload_button').css('background-image', 'url("images/select_file1_rollover.jpg")');
 		$('#upload_hint').html(STRINGS.SELECT_YOUR_FILES);
@@ -400,7 +400,7 @@ $(function() {
 		// events delegate
 		$('.files').on('click', '.trash', deleteBook);
 		$('.files').on('click', '.download', downloadBook);
-		
+
 		initPageStrings();
 		fillFilesContainer();
 		loadFileList();
@@ -408,13 +408,13 @@ $(function() {
 			fillFilesContainer();
 		});
 		bindAjaxUpload('#newfile_0');
-		
+
 		if (typeof(Worker) !== "undefined") {
 			showHtml5View();
 		} else {
 			showHtml4View();
 		}
-		
+
 		$(document).ajaxError(function(event, request, settings){
 			alert(STRINGS.CANNOT_CONNECT_SERVER);
 			$('.progress_wrapper, .progress').css( { 'background':'#f00' });

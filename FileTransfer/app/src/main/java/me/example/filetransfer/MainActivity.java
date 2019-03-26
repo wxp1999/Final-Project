@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     List<FileModel> mFileModelList = new ArrayList<>();
     FileListAdapter mAppshelfAdapter;
 
+    /*
+    Get the file icon from the package
+     */
     public synchronized static Drawable getIconFromPackageName(String packageName, Context
             context) {
         PackageManager pm = context.getPackageManager();
@@ -114,6 +117,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         mUnbinder = ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
+        /*
+        Realization of File Addition and Deletion
+         */
         mToolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.delete_all:
@@ -139,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_CODE);
     }
 
+    /*
+    Determine whether local files can be manipulated
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -149,12 +158,12 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 File file = new File(Constants.DIR, "clipboard_" + String.valueOf(System.currentTimeMillis()) + ".txt");
                 try {
                     FileUtils.writeByteArrayToFile(file, item.getText().toString().getBytes(), false);
-                    Toast.makeText(this, "已把剪切板中内容写入到该文件中", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "succeed", Toast.LENGTH_SHORT).show();
                     RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
                     mAlreadyWrited = item.getText().toString();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, "文件写入失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -166,6 +175,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         return true;
     }
 
+    /*
+    Access to permissions
+     */
     @OnClick(R.id.fab)
     public void onClick(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -253,6 +265,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0));
     }
 
+    /*
+    File processing
+     */
     private void handleFiles(String path, long length) {
         FileModel fileModel = new FileModel();
         PackageManager pm = getPackageManager();
@@ -293,6 +308,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         }
     }
 
+    /*
+    Get file size
+     */
     private String getFileSize(long length) {
         DecimalFormat df = new DecimalFormat("######0.0");
         if (length < 1024.f) {
@@ -327,6 +345,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         });
     }
 
+    /*
+   Get the local file name
+     */
     public String getApplicationName(String packageName) {
         PackageManager packageManager = null;
         ApplicationInfo applicationInfo;
@@ -342,17 +363,11 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         return packageName;
     }
 
-    /**
-     * 判断相对应的APP是否存在
-     *
-     * @param context                                                                  context
-     * @param packageName(包名)(若想判断QQ，则改为com.tencent.mobileqq，若想判断微信，则改为com.tencent.mm)
-     * @return
-     */
+
     public boolean isAvailable(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
 
-        //获取手机系统的所有APP包名，然后进行一一比较
+        //Get all the APP package names of the mobile phone system and compare them one by one.
         List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
         for (int i = 0; i < pinfo.size(); i++) {
             if ((pinfo.get(i)).packageName
@@ -363,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         return false;
     }
 
-    //删除所有文件
+    //Delete all files
     private void deleteAll() {
         File dir = Constants.DIR;
         if (dir.exists() && dir.isDirectory()) {
@@ -377,6 +392,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
     }
 
+    /*
+    toast Information
+     */
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent
             data) {

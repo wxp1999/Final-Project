@@ -1,5 +1,9 @@
 package me.example.filetransfer.util;
 
+/*
+define the file type
+*/
+
 public class FileType {
     public static final String FileTypes[][] = {
             // File Image

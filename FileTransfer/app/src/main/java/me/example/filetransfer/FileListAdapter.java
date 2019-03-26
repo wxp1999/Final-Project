@@ -21,7 +21,9 @@ import me.example.filetransfer.databinding.LayoutFileItemBinding;
 import me.example.filetransfer.util.FileType;
 import me.example.filetransfer.util.FileUtils;
 
-
+/*
+Similar to a file adapter
+ */
 class FileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<FileModel> mFileModelList;
@@ -33,6 +35,9 @@ class FileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         viewBinderHelper.setOpenOnlyOne(true);
     }
 
+    /*
+    RecyclerView Control Read local files
+     */
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -64,6 +69,9 @@ class FileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mFileModelList.size() > 0 ? mFileModelList.size() : 1;
     }
 
+    /*
+    Judge the local file type and classify it
+     */
     class MyViewHolder extends RecyclerView.ViewHolder {
         LayoutFileItemBinding mBinding;
 
@@ -115,13 +123,18 @@ class FileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         return super.getItemViewType(position);
     }
-
+    /*
+    Delete File
+    */
     private void delete(Context context, String packageName) {
         Uri uri = Uri.fromParts("package", packageName, null);
         Intent intent = new Intent(Intent.ACTION_DELETE, uri);
         context.startActivity(intent);
     }
 
+    /*
+    share (or transfer file)
+     */
     private void share(Context context, String filePath) {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);

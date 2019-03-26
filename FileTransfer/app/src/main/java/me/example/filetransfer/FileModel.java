@@ -2,6 +2,9 @@ package me.example.filetransfer;
 
 import android.graphics.drawable.Drawable;
 
+/*
+ Define file model
+ */
 public class FileModel {
     private String path;
     private String version;

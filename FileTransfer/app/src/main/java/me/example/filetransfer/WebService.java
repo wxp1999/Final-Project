@@ -35,7 +35,11 @@ import java.text.DecimalFormat;
 
 import timber.log.Timber;
 
+
 public class WebService extends Service {
+    /*
+    Definition and assignment
+    */
     static final String ACTION_START_WEB_SERVICE = "me.example.filetransfer.action" +
             ".START_WEB_SERVICE";
     static final String ACTION_STOP_WEB_SERVICE = "me.example.filetransfer.action" +

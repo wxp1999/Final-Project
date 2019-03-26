@@ -33,7 +33,7 @@ body {  background-image: url('../images/bg1_01.jpg'); padding: 0px;margin: 0px;
 #right .files .trash_white { margin-left: 0px; width:20px; height:40px; background-position: center; background-repeat: no-repeat; background-image: url('../images/trash_white.png'); cursor: pointer; }
 #right .files .download { margin-left: 0px; width:44px; height:40px; background-position: right; background-repeat: no-repeat; background-image: url('../images/download.gif'); cursor: pointer; }
 
-#drag_area { position:absolute;left:0;top:200px;width:180px; height:180px; margin-left:30px; background-image: url("../images/bg_drag.png"); background-repeat:no-repeat; }
+#drag_area { position:absolute;left:0;top:200px;width:180px; height:180px; margin-left:30px;  background-repeat:no-repeat; }
 #drag_area.normal { background-position: 0px 0px; }
 #drag_area.active { background-position: 0px -181px; }
 

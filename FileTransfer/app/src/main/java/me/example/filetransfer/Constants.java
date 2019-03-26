@@ -5,7 +5,7 @@ import android.os.Environment;
 import java.io.File;
 
 public class Constants {
-    public static final int HTTP_PORT = 12345;
+    public static final int HTTP_PORT = 8000;
     public static final String DIR_IN_SDCARD = "FileTransfer";
     public static final int MSG_DIALOG_DISMISS = 0;
     public static final File DIR = new File(Environment.getExternalStorageDirectory() + File

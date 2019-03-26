@@ -8,6 +8,5 @@
         app:showAsAction="always"/>
     <item
         android:id="@+id/delete_all"
-        android:icon="@mipmap/more"
         android:title="@string/delete_all"/>
 </menu>

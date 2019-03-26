@@ -54,6 +54,9 @@ public class PopupMenuDialog {
     private boolean mIsServerEnabled;
     private boolean mIsWifiAvailable;
 
+    /*
+    Get Window Server
+     */
     public PopupMenuDialog(Context context) {
         this.context = context;
         WindowManager windowManager = (WindowManager) context
@@ -62,6 +65,9 @@ public class PopupMenuDialog {
         RxBus.get().register(this);
     }
 
+    /*
+    Create connection
+     */
     public PopupMenuDialog builder() {
         View view = LayoutInflater.from(context).inflate(
                 R.layout.layout_popup_menu_dialog, null);
@@ -83,6 +89,9 @@ public class PopupMenuDialog {
         return this;
     }
 
+    /*
+    Cancel connection
+     */
     public PopupMenuDialog setCancelable(boolean cancel) {
         dialog.setCancelable(cancel);
         return this;
@@ -93,12 +102,18 @@ public class PopupMenuDialog {
         return this;
     }
 
+    /*
+    WiFi Connection Status
+     */
     public void show() {
         checkWifiState(WifiUtils.getWifiConnectState(context));
         dialog.show();
         registerWifiConnectChangedReceiver();
     }
 
+    /*.
+    WiFi Connection Settings
+     */
     @OnClick({R.id.shared_wifi_cancel, R.id.shared_wifi_settings})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -125,6 +140,9 @@ public class PopupMenuDialog {
         checkWifiState(state);
     }
 
+    /*
+    Detecting Connection Status
+     */
     void checkWifiState(NetworkInfo.State state) {
         if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
             if (state == NetworkInfo.State.CONNECTED) {
@@ -143,6 +161,9 @@ public class PopupMenuDialog {
         onWifiDisconnected();
     }
 
+    /*
+    Unconnected WiFi output information
+     */
     void onWifiDisconnected() {
         mTxtTitle.setText(R.string.wlan_disabled);
         mTxtTitle.setTextColor(context.getResources().getColor(android.R.color.black));
@@ -154,6 +175,9 @@ public class PopupMenuDialog {
         mBtnWifiSettings.setVisibility(View.VISIBLE);
     }
 
+    /*
+    Connect WiFi to successfully output information
+     */
     void onWifiConnecting() {
         mTxtTitle.setText(R.string.wlan_enabled);
         mTxtTitle.setTextColor(context.getResources().getColor(R.color.colorWifiConnected));
@@ -176,6 +200,9 @@ public class PopupMenuDialog {
         mBtnWifiSettings.setVisibility(View.GONE);
     }
 
+    /*
+    Open WiFi
+     */
     @OnClick(R.id.shared_wifi_state)
     public void onWifiStateClick() {
         if (!mIsWifiAvailable) {

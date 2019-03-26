@@ -19,19 +19,18 @@ import java.util.Arrays;
 import me.example.filetransfer.R;
 
 public class FileUtils {
-    /**
-     * 获得文件的 uri
-     *
-     * @param context  context
-     * @param filePath 文件路径
-     * @return uri
-     */
+    /*
+    Get the file path
+    */
     public static Uri getFileUri(Context context, String filePath) {
         File file = new File(filePath);
         return FileProvider.getUriForFile(context, context.getPackageName() + "" +
                 ".fileprovider", file);
     }
 
+    /*
+    Open the file
+     */
     public static boolean openFile(String filePath, Context context) {
         int fileType = getFileType(filePath);
         File file = new File(filePath);
@@ -87,6 +86,9 @@ public class FileUtils {
         return false;
     }
 
+    /*
+    Judging File Type
+     */
     public static int getFileType(String filePath) {
         File file = new File(filePath);
         String fileName = file.getName();
@@ -111,6 +113,9 @@ public class FileUtils {
         return -1;
     }
 
+    /*
+    Matching File Type Corresponding Pictures
+     */
     public static int getFileTypeIcon(String path) {
         int fileType = getFileType(path);
         switch (fileType) {
@@ -163,6 +168,9 @@ public class FileUtils {
         }
     }
 
+    /*.
+    Place the file in the corresponding path
+     */
     public static void copyFile(InputStream in, String targetLocation) throws IOException {
         OutputStream out = new FileOutputStream(targetLocation);
         byte[] buf = new byte[1024];
@@ -174,6 +182,9 @@ public class FileUtils {
         out.close();
     }
 
+    /*
+    Get the filename
+     */
     public static String getFileName(Context context, Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
@@ -193,6 +204,9 @@ public class FileUtils {
         return result;
     }
 
+    /*
+    Get changes on the site
+     */
     private static Intent getHtmlFileIntent(Uri uri) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.setDataAndType(uri, "text/html");
@@ -267,7 +281,7 @@ public class FileUtils {
 
     private static Intent getApkFileIntent(Context context, File file) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        //兼容7.0
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName() + "" +
